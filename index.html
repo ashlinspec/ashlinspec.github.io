@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hari$co - Luxury Online Shopping</title>
+    <title>harisco - Luxury Online Shopping</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
 
@@ -196,7 +196,7 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">hari$co</a>
+                <a href="#" class="logo">harisco</a>
                 <nav>
                     <a href="#" class="btn" id="cart-button">Cart <span id="cart-count">0</span></a>
                 </nav>
@@ -247,7 +247,7 @@
                 <img src="${item.image}" alt="${item.name}">
                 <div class="item-content">
                     <h3>${item.name}</h3>
-                    <p>$${item.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+                    <p>$${item.price.toLocaleString()}</p>
                     <button class="btn add-to-cart" data-id="${item.id}">Add to Cart</button>
                     <button class="btn buy-now" data-id="${item.id}">Buy Now</button>
                 </div>
@@ -305,6 +305,7 @@
 </script>
 </body>
 </html>
+
 
 
 
