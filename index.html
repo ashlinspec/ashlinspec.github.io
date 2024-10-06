@@ -289,17 +289,69 @@
         </div>
     </div>
 
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="product-modal-close">&times;</span>
+            <h2 id="product-name"></h2>
+            <p id="product-description"></p>
+            <p id="product-specialties"></p>
+        </div>
+    </div>
+
     <script>
         const items = [
-            { id: 1, name: "Luxury Fighter Jet", price: 999999, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/fighter.jpg" },
-            { id: 2, name: "Noyal Ruben combo", price: 50000, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.50.45.jpeg" },
-            { id: 3, name: "Harikuttan", price: 5000000, image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/WhatsApp%20Image%202024-10-06%20at%2013.50.36.jpeg?raw=true" },
-            { id: 4, name: "Porsche 911gt3rs", price: 250000, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/pawel-puszkarski-axs76t7S-zg-unsplash.jpg" },
-            { id: 5, name: "Earth", price: 69.69, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/earth-4k-best-desktop-download-wallpaper-preview.jpg" },
-            { id: 6, name: "Pair of Macs", price: 100.01, image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/WhatsApp%20Image%202024-10-06%20at%2022.11.01.jpeg?raw=true" }
+            {
+                id: 1,
+                name: "Luxury Fighter Jet",
+                price: 999999,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/fighter.jpg",
+                description: "A state-of-the-art luxury fighter jet equipped with advanced technology.",
+                specialties: "Speed: Mach 2.0, Range: 2000 miles, Seats: 2"
+            },
+            {
+                id: 2,
+                name: "Noyal Ruben combo",
+                price: 50000,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.50.45.jpeg",
+                description: "The ultimate combo for luxury living.",
+                specialties: "Includes: Watch, Wallet, and Belt"
+            },
+            {
+                id: 3,
+                name: "Harikuttan",
+                price: 5000000,
+                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/WhatsApp%20Image%202024-10-06%20at%2013.50.36.jpeg?raw=true",
+                description: "An exquisite piece of art representing heritage and luxury.",
+                specialties: "Handcrafted, Limited Edition"
+            },
+            {
+                id: 4,
+                name: "Porsche 911gt3rs",
+                price: 250000,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/pawel-puszkarski-axs76t7S-zg-unsplash.jpg",
+                description: "The iconic sports car that combines performance and luxury.",
+                specialties: "Engine: 4.0L Flat-6, Horsepower: 520 HP"
+            },
+            {
+                id: 5,
+                name: "Earth",
+                price: 69.69,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/earth-4k-best-desktop-download-wallpaper-preview.jpg",
+                description: "The only planet with life and breathtaking beauty.",
+                specialties: "Atmosphere: Nitrogen & Oxygen, Diameter: 12,742 km"
+            },
+            {
+                id: 6,
+                name: "Pair of Macs",
+                price: 100.01,
+                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/WhatsApp%20Image%202024-10-06%20at%2022.11.01.jpeg?raw=true",
+                description: "High-end computing experience with a pair of Macs.",
+                specialties: "M1 Chip, Retina Display, 16GB RAM"
+            }
         ];
 
-        // Dynamically display items
+        let cartCount = 0;
+
         function displayItems(itemsToDisplay) {
             const itemList = document.getElementById('item-list');
             itemList.innerHTML = '';
@@ -307,7 +359,7 @@
                 const itemElement = document.createElement('div');
                 itemElement.className = 'item';
                 itemElement.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}">
+                    <img src="${item.image}" alt="${item.name}" data-id="${item.id}">
                     <div class="item-content">
                         <h3>${item.name}</h3>
                         <p>$${item.price.toLocaleString()}</p>
@@ -316,6 +368,10 @@
                     </div>
                 `;
                 itemList.appendChild(itemElement);
+
+                // Add click event for the image to show product details
+                const image = itemElement.querySelector('img');
+                image.addEventListener('click', showProductDetails);
             });
 
             // Add event listeners to buttons
@@ -328,20 +384,33 @@
             });
         }
 
-        // Cart logic
-        let cartCount = 0;
-        function addToCart(event) {
-            cartCount++;
-            document.getElementById('cart-count').textContent = cartCount;
-        }
+        function showProductDetails(event) {
+            const itemId = event.target.dataset.id;
+            const item = items.find(item => item.id == itemId);
 
-        // Modal functionality
-        const modal = document.getElementById("myModal");
-        const closeModal = document.querySelector(".close");
+            if (item) {
+                document.getElementById('product-name').textContent = item.name;
+                document.getElementById('product-description').textContent = item.description;
+                document.getElementById('product-specialties').textContent = `Specialties: ${item.specialties}`;
+                document.getElementById("productModal").style.display = "block";
+            }
+        }
 
         function showModal() {
+            const modal = document.getElementById("myModal");
             modal.style.display = "block";
+            cartCount++;
+            document.getElementById("cart-count").textContent = cartCount;
         }
+
+        function addToCart(event) {
+            const itemId = event.target.dataset.id;
+            // Handle adding to cart logic here (like saving to localStorage or a cart array)
+            alert(`Item with ID: ${itemId} added to cart!`);
+        }
+
+        const modal = document.getElementById("myModal");
+        const closeModal = document.querySelector(".modal .close");
 
         closeModal.onclick = function() {
             modal.style.display = "none";
@@ -351,27 +420,12 @@
             if (event.target == modal) {
                 modal.style.display = "none";
             }
-            if (event.target == loginModal) {
-                loginModal.style.display = "none";
-            }
         }
 
-        // Search functionality
-        const searchButton = document.getElementById('search-button');
-        const searchInput = document.getElementById('search-input');
+        const loginModal = document.getElementById("loginModal");
+        const closeLoginModal = document.querySelector(".login-modal .close");
 
-        searchButton.addEventListener('click', function() {
-            const query = searchInput.value.toLowerCase();
-            const filteredItems = items.filter(item => item.name.toLowerCase().includes(query));
-            displayItems(filteredItems);
-        });
-
-        // Login functionality
-        const loginIcon = document.getElementById('login-icon');
-        const loginModal = document.getElementById('loginModal');
-        const closeLoginModal = loginModal.querySelector('.close');
-
-        loginIcon.onclick = function() {
+        document.getElementById("login-icon").onclick = function() {
             loginModal.style.display = "block";
         }
 
@@ -379,18 +433,30 @@
             loginModal.style.display = "none";
         }
 
-        document.getElementById('login-btn').onclick = function() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            alert(`Logged in as: ${username}`);
-            loginModal.style.display = "none"; // Close the modal after login
+        window.onclick = function(event) {
+            if (event.target == loginModal) {
+                loginModal.style.display = "none";
+            }
         }
 
-        // Initial display of items
+        const productModal = document.getElementById("productModal");
+        const closeProductModal = document.getElementById("product-modal-close");
+
+        closeProductModal.onclick = function() {
+            productModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == productModal) {
+                productModal.style.display = "none";
+            }
+        }
+
         displayItems(items);
     </script>
 </body>
 </html>
+
 
 
 
