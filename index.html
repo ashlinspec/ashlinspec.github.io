@@ -268,133 +268,196 @@
     <main class="container">
         <div class="item-list" id="item-list">
             <!-- Items will be dynamically added here -->
-            <div class="item">
-                <img src="https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/fighter.jpg" alt="Luxury Fighter Jet" data-id="1">
-                <div class="item-content">
-                    <h3>Luxury Fighter Jet</h3>
-                    <p>$999,999</p>
-                    <button class="btn add-to-cart" data-id="1">Add to Cart</button>
-                    <button class="btn buy-now" data-id="1">Buy Now</button>
-                </div>
-            </div>
-            <div class="item">
-                <img src="https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.50.45.jpeg" alt="Noyal Ruben combo" data-id="2">
-                <div class="item-content">
-                    <h3>Noyal Ruben combo</h3>
-                    <p>$50,000</p>
-                    <button class="btn add-to-cart" data-id="2">Add to Cart</button>
-                    <button class="btn buy-now" data-id="2">Buy Now</button>
-                </div>
-            </div>
-            <div class="item">
-                <img src="https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.56.56.jpeg" alt="Limited Edition Racing Car" data-id="3">
-                <div class="item-content">
-                    <h3>Limited Edition Racing Car</h3>
-                    <p>$1,200,000</p>
-                    <button class="btn add-to-cart" data-id="3">Add to Cart</button>
-                    <button class="btn buy-now" data-id="3">Buy Now</button>
-                </div>
-            </div>
-            <div class="item">
-                <img src="https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.56.54.jpeg" alt="Diamond Necklace" data-id="4">
-                <div class="item-content">
-                    <h3>Diamond Necklace</h3>
-                    <p>$250,000</p>
-                    <button class="btn add-to-cart" data-id="4">Add to Cart</button>
-                    <button class="btn buy-now" data-id="4">Buy Now</button>
-                </div>
-            </div>
-            <div class="item">
-                <img src="https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.57.21.jpeg" alt="Luxury Yacht" data-id="5">
-                <div class="item-content">
-                    <h3>Luxury Yacht</h3>
-                    <p>$3,500,000</p>
-                    <button class="btn add-to-cart" data-id="5">Add to Cart</button>
-                    <button class="btn buy-now" data-id="5">Buy Now</button>
-                </div>
-            </div>
-            <div class="item">
-                <img src="https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.57.13.jpeg" alt="Exotic Vacation Package" data-id="6">
-                <div class="item-content">
-                    <h3>Exotic Vacation Package</h3>
-                    <p>$30,000</p>
-                    <button class="btn add-to-cart" data-id="6">Add to Cart</button>
-                    <button class="btn buy-now" data-id="6">Buy Now</button>
-                </div>
-            </div>
-            <div class="item">
-                <img src="https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.57.10.jpeg" alt="Designer Handbag" data-id="7">
-                <div class="item-content">
-                    <h3>Designer Handbag</h3>
-                    <p>$8,500</p>
-                    <button class="btn add-to-cart" data-id="7">Add to Cart</button>
-                    <button class="btn buy-now" data-id="7">Buy Now</button>
-                </div>
-            </div>
         </div>
     </main>
 
-    <div class="modal" id="modal">
+    <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close" id="close">&times;</span>
-            <h2>Item Added to Cart</h2>
-            <p>Your item has been added to the cart successfully!</p>
+            <span class="close">&times;</span>
+            <h2>Congratulations!</h2>
+            <p>Your item is on the way!</p>
         </div>
     </div>
 
-    <div class="login-modal" id="login-modal">
+    <div id="loginModal" class="login-modal">
         <div class="login-content">
-            <span class="close" id="close-login">&times;</span>
+            <span class="close">&times;</span>
             <h2>Login</h2>
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
-            <button>Login</button>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button id="login-btn">Login</button>
+        </div>
+    </div>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="product-modal-close">&times;</span>
+            <h2 id="product-name"></h2>
+            <p id="product-description"></p>
+            <p id="product-specialties"></p>
         </div>
     </div>
 
     <script>
+        const items = [
+            {
+                id: 1,
+                name: "Luxury Fighter Jet",
+                price: 999999,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/fighter.jpg",
+                description: "A state-of-the-art luxury fighter jet equipped with advanced technology.",
+                specialties: "Speed: Mach 2.0, Range: 2000 miles, Seats: 2"
+            },
+            {
+                id: 2,
+                name: "Noyal Ruben combo",
+                price: 50000,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.50.45.jpeg",
+                description: "The ultimate combo for luxury living.",
+                specialties: "Includes: Watch, Wallet, and Belt"
+            },
+            {
+                id: 3,
+                name: "Harikuttan",
+                price: 5000000,
+                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/WhatsApp%20Image%202024-10-06%20at%2022.42.47.jpeg?raw=true",
+                description: "An exquisite piece of art representing heritage and luxury.",
+                specialties: "Handcrafted, Limited Edition"
+            },
+            {
+                id: 4,
+                name: "Porsche 911gt3rs",
+                price: 250000,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/pawel-puszkarski-axs76t7S-zg-unsplash.jpg",
+                description: "The iconic sports car that combines performance and luxury.",
+                specialties: "Engine: 4.0L Flat-6, Horsepower: 520 HP"
+            },
+            {
+                id: 5,
+                name: "Earth",
+                price: 69.69,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/earth-4k-best-desktop-download-wallpaper-preview.jpg",
+                description: "The only planet with life and breathtaking beauty.",
+                specialties: "Atmosphere: Nitrogen & Oxygen, Diameter: 12,742 km"
+            },
+            {
+                id: 6,
+                name: "Pair of Macs",
+                price: 100.01,
+                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/WhatsApp%20Image%202024-10-06%20at%2022.11.01.jpeg?raw=true",
+                description: "High-end computing experience with a pair of Macs.",
+                specialties: "M1 Chip, Retina Display, 16GB RAM"
+            }
+        ];
+
         let cartCount = 0;
 
-        // Add to Cart Functionality
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', () => {
-                cartCount++;
-                document.getElementById('cart-count').textContent = cartCount;
-                document.getElementById('modal').style.display = 'block';
+        function displayItems(itemsToDisplay) {
+            const itemList = document.getElementById('item-list');
+            itemList.innerHTML = '';
+            itemsToDisplay.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" data-id="${item.id}">
+                    <div class="item-content">
+                        <h3>${item.name}</h3>
+                        <p>$${item.price.toLocaleString()}</p>
+                        <button class="btn add-to-cart" data-id="${item.id}">Add to Cart</button>
+                        <button class="btn buy-now" data-id="${item.id}">Buy Now</button>
+                    </div>
+                `;
+                itemList.appendChild(itemElement);
+
+                // Add click event for the image to show product details
+                const image = itemElement.querySelector('img');
+                image.addEventListener('click', showProductDetails);
             });
-        });
 
-        // Buy Now Functionality
-        document.querySelectorAll('.buy-now').forEach(button => {
-            button.addEventListener('click', () => {
-                alert('Thank you for your purchase!');
+            // Add event listeners to buttons
+            document.querySelectorAll('.buy-now').forEach(button => {
+                button.addEventListener('click', showModal);
             });
-        });
 
-        // Close Modal
-        document.getElementById('close').onclick = function() {
-            document.getElementById('modal').style.display = 'none';
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
         }
 
-        // Open Login Modal
-        document.getElementById('login-icon').onclick = function() {
-            document.getElementById('login-modal').style.display = 'block';
-        }
+        function showProductDetails(event) {
+            const itemId = event.target.dataset.id;
+            const item = items.find(item => item.id == itemId);
 
-        // Close Login Modal
-        document.getElementById('close-login').onclick = function() {
-            document.getElementById('login-modal').style.display = 'none';
-        }
-
-        // Close Login Modal on outside click
-        window.onclick = function(event) {
-            if (event.target === document.getElementById('login-modal')) {
-                document.getElementById('login-modal').style.display = 'none';
+            if (item) {
+                document.getElementById('product-name').textContent = item.name;
+                document.getElementById('product-description').textContent = item.description;
+                document.getElementById('product-specialties').textContent = `Specialties: ${item.specialties}`;
+                document.getElementById("productModal").style.display = "block";
             }
         }
+
+        function showModal() {
+            const modal = document.getElementById("myModal");
+            modal.style.display = "block";
+            cartCount++;
+            document.getElementById("cart-count").textContent = cartCount;
+        }
+
+        function addToCart(event) {
+            const itemId = event.target.dataset.id;
+            // Handle adding to cart logic here (like saving to localStorage or a cart array)
+            alert(`Item with ID: ${itemId} added to cart!`);
+        }
+
+        const modal = document.getElementById("myModal");
+        const closeModal = document.querySelector(".modal .close");
+
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        const loginModal = document.getElementById("loginModal");
+        const closeLoginModal = document.querySelector(".login-modal .close");
+
+        document.getElementById("login-icon").onclick = function() {
+            loginModal.style.display = "block";
+        }
+
+        closeLoginModal.onclick = function() {
+            loginModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == loginModal) {
+                loginModal.style.display = "none";
+            }
+        }
+
+        const productModal = document.getElementById("productModal");
+        const closeProductModal = document.getElementById("product-modal-close");
+
+        closeProductModal.onclick = function() {
+            productModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == productModal) {
+                productModal.style.display = "none";
+            }
+        }
+
+        displayItems(items);
     </script>
 </body>
 </html>
+
+
 
 
 
