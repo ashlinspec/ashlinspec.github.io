@@ -190,6 +190,57 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        .login-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .login-content {
+            background-color: #f9f6f1;
+            margin: 15% auto;
+            padding: 30px;
+            border: 1px solid #e6cbb8;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .login-content input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #e6cbb8;
+            border-radius: 4px;
+        }
+
+        .login-content button {
+            background-color: #d4af37;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-content button:hover {
+            background-color: #c5972d;
+        }
+
+        .user-icon {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #d4af37;
+        }
     </style>
 </head>
 <body>
@@ -198,6 +249,7 @@
             <div class="header-content">
                 <a href="#" class="logo">harisco</a>
                 <nav>
+                    <span class="user-icon" id="login-icon">👤</span>
                     <a href="#" class="btn" id="cart-button">Cart <span id="cart-count">0</span></a>
                 </nav>
             </div>
@@ -227,82 +279,115 @@
         </div>
     </div>
 
+    <div id="loginModal" class="login-modal">
+        <div class="login-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button id="login-btn">Login</button>
+        </div>
+    </div>
+
     <script>
-    const items = [
-        { id: 1, name: "Luxury Fighter Jet", price: 999999, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/fighter.jpg" },
-        { id: 2, name: "Noyal Ruben combo", price: 50000, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.50.45.jpeg" },
-        { id: 3, name: "Harikuttan", price: 5000000, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2001.42.37.jpeg" },
-        { id: 4, name: "Porsche 911gt3rs", price: 250000, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/pawel-puszkarski-axs76t7S-zg-unsplash.jpg" },
-        { id: 5, name: "Earth", price: 69.69, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/earth-4k-best-desktop-download-wallpaper-preview.jpg" }
-    ];
+        const items = [
+            { id: 1, name: "Luxury Fighter Jet", price: 999999, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/fighter.jpg" },
+            { id: 2, name: "Noyal Ruben combo", price: 50000, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.50.45.jpeg" },
+            { id: 3, name: "Harikuttan", price: 5000000, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2001.42.37.jpeg" },
+            { id: 4, name: "Porsche 911gt3rs", price: 250000, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/pawel-puszkarski-axs76t7S-zg-unsplash.jpg" },
+            { id: 5, name: "Earth", price: 69.69, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/earth-4k-best-desktop-download-wallpaper-preview.jpg" }
+        ];
 
-    // Dynamically display items
-    function displayItems(itemsToDisplay) {
-        const itemList = document.getElementById('item-list');
-        itemList.innerHTML = '';
-        itemsToDisplay.forEach(item => {
-            const itemElement = document.createElement('div');
-            itemElement.className = 'item';
-            itemElement.innerHTML = `
-                <img src="${item.image}" alt="${item.name}">
-                <div class="item-content">
-                    <h3>${item.name}</h3>
-                    <p>$${item.price.toLocaleString()}</p>
-                    <button class="btn add-to-cart" data-id="${item.id}">Add to Cart</button>
-                    <button class="btn buy-now" data-id="${item.id}">Buy Now</button>
-                </div>
-            `;
-            itemList.appendChild(itemElement);
-        });
+        // Dynamically display items
+        function displayItems(itemsToDisplay) {
+            const itemList = document.getElementById('item-list');
+            itemList.innerHTML = '';
+            itemsToDisplay.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-content">
+                        <h3>${item.name}</h3>
+                        <p>$${item.price.toLocaleString()}</p>
+                        <button class="btn add-to-cart" data-id="${item.id}">Add to Cart</button>
+                        <button class="btn buy-now" data-id="${item.id}">Buy Now</button>
+                    </div>
+                `;
+                itemList.appendChild(itemElement);
+            });
 
-        // Add event listeners to buttons
-        document.querySelectorAll('.buy-now').forEach(button => {
-            button.addEventListener('click', showModal);
-        });
+            // Add event listeners to buttons
+            document.querySelectorAll('.buy-now').forEach(button => {
+                button.addEventListener('click', showModal);
+            });
 
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', addToCart);
-        });
-    }
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
+        }
 
-    // Cart logic
-    let cartCount = 0;
-    function addToCart(event) {
-        cartCount++;
-        document.getElementById('cart-count').textContent = cartCount;
-    }
+        // Cart logic
+        let cartCount = 0;
+        function addToCart(event) {
+            cartCount++;
+            document.getElementById('cart-count').textContent = cartCount;
+        }
 
-    // Modal functionality
-    const modal = document.getElementById("myModal");
-    const closeModal = document.querySelector(".close");
+        // Modal functionality
+        const modal = document.getElementById("myModal");
+        const closeModal = document.querySelector(".close");
 
-    function showModal() {
-        modal.style.display = "block";
-    }
+        function showModal() {
+            modal.style.display = "block";
+        }
 
-    closeModal.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
+        closeModal.onclick = function() {
             modal.style.display = "none";
         }
-    }
 
-    // Search functionality
-    const searchButton = document.getElementById('search-button');
-    const searchInput = document.getElementById('search-input');
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+            if (event.target == loginModal) {
+                loginModal.style.display = "none";
+            }
+        }
 
-    searchButton.addEventListener('click', function() {
-        const query = searchInput.value.toLowerCase();
-        const filteredItems = items.filter(item => item.name.toLowerCase().includes(query));
-        displayItems(filteredItems);
-    });
+        // Search functionality
+        const searchButton = document.getElementById('search-button');
+        const searchInput = document.getElementById('search-input');
 
-    // Initial display of items
-    displayItems(items);
-</script>
+        searchButton.addEventListener('click', function() {
+            const query = searchInput.value.toLowerCase();
+            const filteredItems = items.filter(item => item.name.toLowerCase().includes(query));
+            displayItems(filteredItems);
+        });
+
+        // Login functionality
+        const loginIcon = document.getElementById('login-icon');
+        const loginModal = document.getElementById('loginModal');
+        const closeLoginModal = loginModal.querySelector('.close');
+
+        loginIcon.onclick = function() {
+            loginModal.style.display = "block";
+        }
+
+        closeLoginModal.onclick = function() {
+            loginModal.style.display = "none";
+        }
+
+        document.getElementById('login-btn').onclick = function() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            alert(`Logged in as: ${username}`);
+            loginModal.style.display = "none"; // Close the modal after login
+        }
+
+        // Initial display of items
+        displayItems(items);
+    </script>
 </body>
 </html>
 
