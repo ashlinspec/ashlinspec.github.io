@@ -241,51 +241,6 @@
             font-size: 1.5rem;
             color: #d4af37;
         }
-
-        /* Cart Modal */
-        .cart-modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.6);
-        }
-
-        .cart-content {
-            background-color: #f9f6f1;
-            margin: 10% auto;
-            padding: 30px;
-            border: 1px solid #e6cbb8;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 12px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #e6cbb8;
-        }
-
-        .checkout-btn {
-            margin-top: 20px;
-            background-color: #d4af37;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .checkout-btn:hover {
-            background-color: #c5972d;
-        }
     </style>
 </head>
 <body>
@@ -304,172 +259,139 @@
     <div class="search-container">
         <div class="container">
             <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search for products...">
+                <input type="text" id="search-input" placeholder="Search for luxury items...">
                 <button id="search-button">Search</button>
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <h2>Shop Our Products</h2>
+    <main class="container">
         <div class="item-list" id="item-list">
-            <!-- Product Items -->
-            <div class="item" data-name="Luxury Watch" data-price="200">
-                <img src="https://via.placeholder.com/250" alt="Luxury Watch">
+            <!-- Items will be dynamically added here -->
+            <div class="item">
+                <img src="https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/fighter.jpg" alt="Luxury Fighter Jet" data-id="1">
                 <div class="item-content">
-                    <h3>Luxury Watch</h3>
-                    <p>$200</p>
-                    <a href="#" class="btn add-to-cart">Add to Cart</a>
+                    <h3>Luxury Fighter Jet</h3>
+                    <p>$999,999</p>
+                    <button class="btn add-to-cart" data-id="1">Add to Cart</button>
+                    <button class="btn buy-now" data-id="1">Buy Now</button>
                 </div>
             </div>
-            <div class="item" data-name="Elegant Handbag" data-price="150">
-                <img src="https://via.placeholder.com/250" alt="Elegant Handbag">
+            <div class="item">
+                <img src="https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.50.45.jpeg" alt="Noyal Ruben combo" data-id="2">
                 <div class="item-content">
-                    <h3>Elegant Handbag</h3>
-                    <p>$150</p>
-                    <a href="#" class="btn add-to-cart">Add to Cart</a>
+                    <h3>Noyal Ruben combo</h3>
+                    <p>$50,000</p>
+                    <button class="btn add-to-cart" data-id="2">Add to Cart</button>
+                    <button class="btn buy-now" data-id="2">Buy Now</button>
                 </div>
             </div>
-            <div class="item" data-name="Classic Sunglasses" data-price="100">
-                <img src="https://via.placeholder.com/250" alt="Classic Sunglasses">
+            <div class="item">
+                <img src="https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.56.56.jpeg" alt="Limited Edition Racing Car" data-id="3">
                 <div class="item-content">
-                    <h3>Classic Sunglasses</h3>
-                    <p>$100</p>
-                    <a href="#" class="btn add-to-cart">Add to Cart</a>
+                    <h3>Limited Edition Racing Car</h3>
+                    <p>$1,200,000</p>
+                    <button class="btn add-to-cart" data-id="3">Add to Cart</button>
+                    <button class="btn buy-now" data-id="3">Buy Now</button>
                 </div>
             </div>
-            <div class="item" data-name="Stylish Scarf" data-price="80">
-                <img src="https://via.placeholder.com/250" alt="Stylish Scarf">
+            <div class="item">
+                <img src="https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.56.54.jpeg" alt="Diamond Necklace" data-id="4">
                 <div class="item-content">
-                    <h3>Stylish Scarf</h3>
-                    <p>$80</p>
-                    <a href="#" class="btn add-to-cart">Add to Cart</a>
+                    <h3>Diamond Necklace</h3>
+                    <p>$250,000</p>
+                    <button class="btn add-to-cart" data-id="4">Add to Cart</button>
+                    <button class="btn buy-now" data-id="4">Buy Now</button>
                 </div>
             </div>
-            <div class="item" data-name="Luxury Perfume" data-price="120">
-                <img src="https://via.placeholder.com/250" alt="Luxury Perfume">
+            <div class="item">
+                <img src="https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.57.21.jpeg" alt="Luxury Yacht" data-id="5">
                 <div class="item-content">
-                    <h3>Luxury Perfume</h3>
-                    <p>$120</p>
-                    <a href="#" class="btn add-to-cart">Add to Cart</a>
+                    <h3>Luxury Yacht</h3>
+                    <p>$3,500,000</p>
+                    <button class="btn add-to-cart" data-id="5">Add to Cart</button>
+                    <button class="btn buy-now" data-id="5">Buy Now</button>
                 </div>
             </div>
-            <div class="item" data-name="Designer Shoes" data-price="250">
-                <img src="https://via.placeholder.com/250" alt="Designer Shoes">
+            <div class="item">
+                <img src="https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.57.13.jpeg" alt="Exotic Vacation Package" data-id="6">
                 <div class="item-content">
-                    <h3>Designer Shoes</h3>
-                    <p>$250</p>
-                    <a href="#" class="btn add-to-cart">Add to Cart</a>
+                    <h3>Exotic Vacation Package</h3>
+                    <p>$30,000</p>
+                    <button class="btn add-to-cart" data-id="6">Add to Cart</button>
+                    <button class="btn buy-now" data-id="6">Buy Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <img src="https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.57.10.jpeg" alt="Designer Handbag" data-id="7">
+                <div class="item-content">
+                    <h3>Designer Handbag</h3>
+                    <p>$8,500</p>
+                    <button class="btn add-to-cart" data-id="7">Add to Cart</button>
+                    <button class="btn buy-now" data-id="7">Buy Now</button>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!-- Cart Modal -->
-    <div class="cart-modal" id="cart-modal">
-        <div class="cart-content">
-            <span class="close" id="close-cart">&times;</span>
-            <h2>Your Cart</h2>
-            <div id="cart-items"></div>
-            <button class="checkout-btn" id="checkout-button">Checkout</button>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" id="close">&times;</span>
+            <h2>Item Added to Cart</h2>
+            <p>Your item has been added to the cart successfully!</p>
         </div>
     </div>
 
-    <!-- Login Modal -->
     <div class="login-modal" id="login-modal">
         <div class="login-content">
             <span class="close" id="close-login">&times;</span>
             <h2>Login</h2>
-            <input type="text" placeholder="Username" id="username">
-            <input type="password" placeholder="Password" id="password">
-            <button id="login-submit">Login</button>
+            <input type="text" placeholder="Username">
+            <input type="password" placeholder="Password">
+            <button>Login</button>
         </div>
     </div>
 
     <script>
-        let cart = [];
+        let cartCount = 0;
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const cartButton = document.getElementById('cart-button');
-            const cartModal = document.getElementById('cart-modal');
-            const closeCart = document.getElementById('close-cart');
-            const cartItemsContainer = document.getElementById('cart-items');
-            const checkoutButton = document.getElementById('checkout-button');
-            const loginIcon = document.getElementById('login-icon');
-            const loginModal = document.getElementById('login-modal');
-            const closeLogin = document.getElementById('close-login');
-            const loginSubmit = document.getElementById('login-submit');
-
-            // Show cart modal
-            cartButton.addEventListener('click', () => {
-                updateCartDisplay();
-                cartModal.style.display = 'block';
+        // Add to Cart Functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                cartCount++;
+                document.getElementById('cart-count').textContent = cartCount;
+                document.getElementById('modal').style.display = 'block';
             });
-
-            // Close cart modal
-            closeCart.addEventListener('click', () => {
-                cartModal.style.display = 'none';
-            });
-
-            // Close login modal
-            closeLogin.addEventListener('click', () => {
-                loginModal.style.display = 'none';
-            });
-
-            // Show login modal
-            loginIcon.addEventListener('click', () => {
-                loginModal.style.display = 'block';
-            });
-
-            // Add to cart functionality
-            document.querySelectorAll('.add-to-cart').forEach(button => {
-                button.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    const itemElement = button.closest('.item');
-                    const itemName = itemElement.getAttribute('data-name');
-                    const itemPrice = parseFloat(itemElement.getAttribute('data-price'));
-
-                    cart.push({ name: itemName, price: itemPrice });
-                    updateCartCount();
-                    alert(`${itemName} has been added to your cart.`);
-                });
-            });
-
-            // Checkout functionality
-            checkoutButton.addEventListener('click', () => {
-                alert('Proceeding to checkout!');
-                // Here, you can implement further checkout logic (e.g., payment processing).
-            });
-
-            // Update cart display
-            function updateCartDisplay() {
-                cartItemsContainer.innerHTML = '';
-                cart.forEach((item, index) => {
-                    const cartItemDiv = document.createElement('div');
-                    cartItemDiv.className = 'cart-item';
-                    cartItemDiv.innerHTML = `
-                        <span>${item.name} - $${item.price}</span>
-                        <button class="remove-btn" data-index="${index}">Remove</button>
-                    `;
-                    cartItemsContainer.appendChild(cartItemDiv);
-                });
-
-                // Add remove functionality for each item
-                document.querySelectorAll('.remove-btn').forEach(button => {
-                    button.addEventListener('click', (event) => {
-                        const index = parseInt(event.target.getAttribute('data-index'));
-                        cart.splice(index, 1);
-                        updateCartDisplay();
-                        updateCartCount();
-                    });
-                });
-            }
-
-            // Update cart count
-            function updateCartCount() {
-                document.getElementById('cart-count').innerText = cart.length;
-            }
         });
+
+        // Buy Now Functionality
+        document.querySelectorAll('.buy-now').forEach(button => {
+            button.addEventListener('click', () => {
+                alert('Thank you for your purchase!');
+            });
+        });
+
+        // Close Modal
+        document.getElementById('close').onclick = function() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Open Login Modal
+        document.getElementById('login-icon').onclick = function() {
+            document.getElementById('login-modal').style.display = 'block';
+        }
+
+        // Close Login Modal
+        document.getElementById('close-login').onclick = function() {
+            document.getElementById('login-modal').style.display = 'none';
+        }
+
+        // Close Login Modal on outside click
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('login-modal')) {
+                document.getElementById('login-modal').style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
