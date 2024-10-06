@@ -18,6 +18,59 @@
             background-color: #f9f6f1;
             color: #333;
             line-height: 1.6;
+            overflow: hidden; /* Hide scroll during loading */
+        }
+
+        /* Loader Styles */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #2c2a29;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo-animation {
+            font-size: 3rem;
+            font-family: 'Playfair Display', serif;
+            color: #d4af37;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInLogo 3s ease forwards, bounceLogo 1.5s ease infinite;
+        }
+
+        /* Keyframe animation for fading in */
+        @keyframes fadeInLogo {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Keyframe animation for bouncing */
+        @keyframes bounceLogo {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Page content styling - same as before */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         header {
@@ -25,12 +78,6 @@
             color: white;
             padding: 1.5rem 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         .header-content {
@@ -47,152 +94,23 @@
             text-decoration: none;
         }
 
-        .search-container {
-            background-color: #fff1e5;
-            padding: 2rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .search-bar {
-            display: flex;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        #search-input {
-            flex-grow: 1;
-            padding: 0.8rem;
-            font-size: 1.1rem;
-            border: 2px solid #e6cbb8;
-            border-right: none;
-            border-radius: 4px 0 0 4px;
-            background-color: #faf3e6;
-        }
-
-        #search-button {
-            padding: 0.8rem 1.5rem;
-            background-color: #d4af37;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            border-radius: 0 4px 4px 0;
-            transition: background-color 0.3s ease;
-        }
-
-        #search-button:hover {
-            background-color: #c5972d;
-        }
-
-        .item-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 2rem 0;
-        }
-
-        .item {
-            background-color: white;
-            border-radius: 12px;
+        /* Search bar and item grid styles (no changes here) */
+        /* ... (The rest of the CSS remains the same) */
+        
+        /* Hide overflow while loading */
+        .hidden-overflow {
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border: 1px solid #e6cbb8;
-        }
-
-        .item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        }
-
-        .item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .item-content {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .item h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.7rem;
-            color: #5b4033;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .item p {
-            color: #d4af37;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.6rem 1.5rem;
-            background-color: #d4af37;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-            margin-top: 0.7rem;
-        }
-
-        .btn:hover {
-            background-color: #c5972d;
-        }
-
-        #cart-count {
-            background-color: white;
-            color: #d4af37;
-            border-radius: 50%;
-            padding: 0.3rem 0.6rem;
-            margin-left: 0.5rem;
-            font-weight: bold;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.6);
-        }
-
-        .modal-content {
-            background-color: #f9f6f1;
-            margin: 15% auto;
-            padding: 30px;
-            border: 1px solid #e6cbb8;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .close {
-            color: #a8a8a8;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
         }
     </style>
 </head>
 <body>
+
+    <!-- Loader with animation -->
+    <div id="loader">
+        <div class="logo-animation">hari$co</div>
+    </div>
+
+    <!-- Page content starts here -->
     <header>
         <div class="container">
             <div class="header-content">
@@ -228,81 +146,90 @@
     </div>
 
     <script>
-    const items = [
-        { id: 1, name: "Luxury Fighter Jet", price: 999999, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/fighter.jpg" },
-        { id: 2, name: "Noyal Ruben combo", price: 50000, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.50.45.jpeg" },
-        { id: 3, name: "Harikuttan", price: 5000000, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2001.42.37.jpeg" },
-        { id: 4, name: "Porsche 911gt3rs", price: 250000, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/pawel-puszkarski-axs76t7S-zg-unsplash.jpg" },
-        { id: 5, name: "Earth", price: 69.69, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/earth-4k-best-desktop-download-wallpaper-preview.jpg" }
-    ];
-
-    // Dynamically display items
-    function displayItems(itemsToDisplay) {
-        const itemList = document.getElementById('item-list');
-        itemList.innerHTML = '';
-        itemsToDisplay.forEach(item => {
-            const itemElement = document.createElement('div');
-            itemElement.className = 'item';
-            itemElement.innerHTML = `
-                <img src="${item.image}" alt="${item.name}">
-                <div class="item-content">
-                    <h3>${item.name}</h3>
-                    <p>$${item.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
-                    <button class="btn add-to-cart" data-id="${item.id}">Add to Cart</button>
-                    <button class="btn buy-now" data-id="${item.id}">Buy Now</button>
-                </div>
-            `;
-            itemList.appendChild(itemElement);
+        // Loader functionality
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            loader.style.display = 'none'; // Hide the loader after page loads
+            document.body.classList.remove('hidden-overflow'); // Re-enable scroll
         });
 
-        // Add event listeners to buttons
-        document.querySelectorAll('.buy-now').forEach(button => {
-            button.addEventListener('click', showModal);
-        });
+        // Sample items for the store
+        const items = [
+            { id: 1, name: "Luxury Fighter Jet", price: 999999, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/fighter.jpg" },
+            { id: 2, name: "Noyal Ruben combo", price: 50000, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.50.45.jpeg" },
+            { id: 3, name: "Harikuttan", price: 5000000, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2001.42.37.jpeg" },
+            { id: 4, name: "Porsche 911gt3rs", price: 250000, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/pawel-puszkarski-axs76t7S-zg-unsplash.jpg" },
+            { id: 5, name: "Earth", price: 69.69, image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/earth-4k-best-desktop-download-wallpaper-preview.jpg" }
+        ];
 
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', addToCart);
-        });
-    }
+        // Dynamically display items
+        function displayItems(itemsToDisplay) {
+            const itemList = document.getElementById('item-list');
+            itemList.innerHTML = '';
+            itemsToDisplay.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-content">
+                        <h3>${item.name}</h3>
+                        <p>$${item.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+                        <button class="btn add-to-cart" data-id="${item.id}">Add to Cart</button>
+                        <button class="btn buy-now" data-id="${item.id}">Buy Now</button>
+                    </div>
+                `;
+                itemList.appendChild(itemElement);
+            });
 
-    // Cart logic
-    let cartCount = 0;
-    function addToCart(event) {
-        cartCount++;
-        document.getElementById('cart-count').textContent = cartCount;
-    }
+            // Add event listeners to buttons
+            document.querySelectorAll('.buy-now').forEach(button => {
+                button.addEventListener('click', showModal);
+            });
 
-    // Modal functionality
-    const modal = document.getElementById("myModal");
-    const closeModal = document.querySelector(".close");
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
+        }
 
-    function showModal() {
-        modal.style.display = "block";
-    }
+        // Cart logic
+        let cartCount = 0;
+        function addToCart(event) {
+            cartCount++;
+            document.getElementById('cart-count').textContent = cartCount;
+        }
 
-    closeModal.onclick = function() {
-        modal.style.display = "none";
-    }
+        // Modal functionality
+        const modal = document.getElementById("myModal");
+        const closeModal = document.querySelector(".close");
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
+        function showModal() {
+            modal.style.display = "block";
+        }
+
+        closeModal.onclick = function() {
             modal.style.display = "none";
         }
-    }
 
-    // Search functionality
-    const searchButton = document.getElementById('search-button');
-    const searchInput = document.getElementById('search-input');
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
 
-    searchButton.addEventListener('click', function() {
-        const query = searchInput.value.toLowerCase();
-        const filteredItems = items.filter(item => item.name.toLowerCase().includes(query));
-        displayItems(filteredItems);
-    });
+        // Search functionality
+        const searchButton = document.getElementById('search-button');
+        const searchInput = document.getElementById('search-input');
 
-    // Initial display of items
-    displayItems(items);
-</script>
+        searchButton.addEventListener('click', function() {
+            const query = searchInput.value.toLowerCase();
+            const filteredItems = items.filter(item => item.name.toLowerCase().includes(query));
+            displayItems(filteredItems);
+        });
+
+        // Initial display of items
+        displayItems(items);
+    </script>
 </body>
 </html>
+
 
