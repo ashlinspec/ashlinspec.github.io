@@ -222,92 +222,70 @@
     </div>
 
     <script>
-        const items = [
-            { id: 1, name: "Luxury Fighter Jet", price: 999999, image: "fighter-jet.jpg" },
-            { id: 2, name: "Diamond Encrusted Watch", price: 50000, image: "/api/placeholder/300/200" },
-            { id: 3, name: "Super Yacht", price: 5000000, image: "/api/placeholder/300/200" },
-            { id: 4, name: "Sports Car", price: 250000, image: "/api/placeholder/300/200" },
-            { id: 5, name: "Luxury Experience Package", price: 69.69, image: "/api/placeholder/300/200" }
-        ];
+    const items = [
+        { id: 1, name: "Luxury Fighter Jet", price: 999999, image: "https://example.com/fighter-jet.jpg" },
+        { id: 2, name: "Diamond Encrusted Watch", price: 50000, image: "https://example.com/watch.jpg" },
+        { id: 3, name: "Super Yacht", price: 5000000, image: "https://example.com/yacht.jpg" },
+        { id: 4, name: "Sports Car", price: 250000, image: "https://example.com/sports-car.jpg" },
+        { id: 5, name: "Luxury Experience Package", price: 69.69, image: "https://example.com/experience.jpg" }
+    ];
 
+    // Code for dynamically displaying items
+    function displayItems(itemsToDisplay) {
         const itemList = document.getElementById('item-list');
-        const searchInput = document.getElementById('search-input');
-        const searchButton = document.getElementById('search-button');
-        const cartButton = document.getElementById('cart-button');
-        const cartCount = document.getElementById('cart-count');
-        const modal = document.getElementById('myModal');
-        const closeModal = document.getElementsByClassName('close')[0];
-
-        let cart = [];
-
-        function displayItems(itemsToDisplay) {
-            itemList.innerHTML = '';
-            itemsToDisplay.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.className = 'item';
-                itemElement.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}">
-                    <div class="item-content">
-                        <h3>${item.name}</h3>
-                        <p>$${item.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
-                        <button class="btn add-to-cart" data-id="${item.id}">Add to Cart</button>
-                        <button class="btn buy-now" data-id="${item.id}">Buy Now</button>
-                    </div>
-                `;
-                itemList.appendChild(itemElement);
-            });
-        }
-
-        function searchItems() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const filteredItems = items.filter(item => 
-                item.name.toLowerCase().includes(searchTerm)
-            );
-            displayItems(filteredItems);
-        }
-
-        function addToCart(id) {
-            const item = items.find(item => item.id === id);
-            cart.push(item);
-            updateCartCount();
-        }
-
-        function updateCartCount() {
-            cartCount.textContent = cart.length;
-        }
-
-        function buyNow(id) {
-            addToCart(id);
-            modal.style.display = "block";
-        }
-
-        searchButton.addEventListener('click', searchItems);
-        searchInput.addEventListener('keyup', event => {
-            if (event.key === 'Enter') {
-                searchItems();
-            }
+        itemList.innerHTML = '';
+        itemsToDisplay.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'item';
+            itemElement.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <div class="item-content">
+                    <h3>${item.name}</h3>
+                    <p>$${item.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+                    <button class="btn add-to-cart" data-id="${item.id}">Add to Cart</button>
+                    <button class="btn buy-now" data-id="${item.id}">Buy Now</button>
+                </div>
+            `;
+            itemList.appendChild(itemElement);
         });
 
-        itemList.addEventListener('click', event => {
-            if (event.target.classList.contains('add-to-cart')) {
-                addToCart(parseInt(event.target.dataset.id));
-            } else if (event.target.classList.contains('buy-now')) {
-                buyNow(parseInt(event.target.dataset.id));
-            }
+        // Add event listeners to buttons
+        document.querySelectorAll('.buy-now').forEach(button => {
+            button.addEventListener('click', showModal);
         });
 
-        closeModal.onclick = function() {
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', addToCart);
+        });
+    }
+
+    // Cart logic
+    let cartCount = 0;
+    function addToCart(event) {
+        cartCount++;
+        document.getElementById('cart-count').textContent = cartCount;
+    }
+
+    // Modal functionality
+    const modal = document.getElementById("myModal");
+    const closeModal = document.querySelector(".close");
+
+    function showModal() {
+        modal.style.display = "block";
+    }
+
+    closeModal.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
             modal.style.display = "none";
         }
+    }
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-
-        // Initial display of items
-        displayItems(items);
-    </script>
+    // Initial display of items
+    displayItems(items);
+</script>
 </body>
 </html>
