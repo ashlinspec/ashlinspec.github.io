@@ -5,7 +5,242 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>harisco - Luxury Online Shopping</title>
     <style>
-        /* Your existing CSS styles go here */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f6f1;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #2c2a29;
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: #d4af37;
+            text-decoration: none;
+        }
+
+        .search-container {
+            background-color: #fff1e5;
+            padding: 2rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .search-bar {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #search-input {
+            flex-grow: 1;
+            padding: 0.8rem;
+            font-size: 1.1rem;
+            border: 2px solid #e6cbb8;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            background-color: #faf3e6;
+        }
+
+        #search-button {
+            padding: 0.8rem 1.5rem;
+            background-color: #d4af37;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 0 4px 4px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        #search-button:hover {
+            background-color: #c5972d;
+        }
+
+        .item-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .item {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 1px solid #e6cbb8;
+        }
+
+        .item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .item-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.7rem;
+            color: #5b4033;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .item p {
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background-color: #d4af37;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            margin-top: 0.7rem;
+        }
+
+        .btn:hover {
+            background-color: #c5972d;
+        }
+
+        #cart-count {
+            background-color: white;
+            color: #d4af37;
+            border-radius: 50%;
+            padding: 0.3rem 0.6rem;
+            margin-left: 0.5rem;
+            font-weight: bold;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .modal-content {
+            background-color: #f9f6f1;
+            margin: 15% auto;
+            padding: 30px;
+            border: 1px solid #e6cbb8;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .close {
+            color: #a8a8a8;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .login-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .login-content {
+            background-color: #f9f6f1;
+            margin: 15% auto;
+            padding: 30px;
+            border: 1px solid #e6cbb8;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .login-content input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #e6cbb8;
+            border-radius: 4px;
+        }
+
+        .login-content button {
+            background-color: #d4af37;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-content button:hover {
+            background-color: #c5972d;
+        }
+
+        .user-icon {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #d4af37;
+        }
     </style>
 </head>
 <body>
@@ -63,22 +298,59 @@
         </div>
     </div>
 
-    <div id="cartModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="cart-modal-close">&times;</span>
-            <h2>Your Cart</h2>
-            <div id="cart-list"></div>
-            <p id="total-price"></p>
-            <button id="checkout-btn" class="btn">Checkout</button>
-        </div>
-    </div>
-
     <script>
         const items = [
-            // Your items array goes here
+            {
+                id: 1,
+                name: "Luxury Fighter Jet",
+                price: 999999,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/fighter.jpg",
+                description: "A state-of-the-art luxury fighter jet equipped with advanced technology.",
+                specialties: "Speed: Mach 2.0, Range: 2000 miles, Seats: 2"
+            },
+            {
+                id: 2,
+                name: "Noyal Ruben combo",
+                price: 50000,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.50.45.jpeg",
+                description: "The ultimate combo for luxury living.",
+                specialties: "Includes: Watch, Wallet, and Belt"
+            },
+            {
+                id: 3,
+                name: "Harikuttan",
+                price: 5000000,
+                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/WhatsApp%20Image%202024-10-06%20at%2022.42.47.jpeg?raw=true",
+                description: "An exquisite piece of art representing heritage and luxury.",
+                specialties: "Handcrafted, Limited Edition"
+            },
+            {
+                id: 4,
+                name: "Porsche 911gt3rs",
+                price: 250000,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/pawel-puszkarski-axs76t7S-zg-unsplash.jpg",
+                description: "The iconic sports car that combines performance and luxury.",
+                specialties: "Engine: 4.0L Flat-6, Horsepower: 520 HP"
+            },
+            {
+                id: 5,
+                name: "Earth",
+                price: 69.69,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/earth-4k-best-desktop-download-wallpaper-preview.jpg",
+                description: "The only planet with life and breathtaking beauty.",
+                specialties: "Atmosphere: Nitrogen & Oxygen, Diameter: 12,742 km"
+            },
+            {
+                id: 6,
+                name: "Pair of Macs",
+                price: 100.01,
+                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/WhatsApp%20Image%202024-10-06%20at%2022.11.01.jpeg?raw=true",
+                description: "High-end computing experience with a pair of Macs.",
+                specialties: "M1 Chip, Retina Display, 16GB RAM"
+            }
         ];
 
-        let cart = [];
+        let cartCount = 0;
 
         function displayItems(itemsToDisplay) {
             const itemList = document.getElementById('item-list');
@@ -127,62 +399,59 @@
         function showModal() {
             const modal = document.getElementById("myModal");
             modal.style.display = "block";
+            cartCount++;
+            document.getElementById("cart-count").textContent = cartCount;
         }
 
         function addToCart(event) {
             const itemId = event.target.dataset.id;
-            const item = items.find(item => item.id == itemId);
-            if (item) {
-                cart.push(item);
-                alert(`Item ${item.name} added to cart!`);
-                document.getElementById("cart-count").textContent = cart.length; // Update cart count
-            }
+            // Handle adding to cart logic here (like saving to localStorage or a cart array)
+            alert(`Item with ID: ${itemId} added to cart!`);
         }
 
-        function showCart() {
-            const cartModal = document.getElementById('cartModal');
-            const cartList = document.getElementById('cart-list');
-            cartList.innerHTML = '';
-            cart.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.textContent = `${item.name} - $${item.price.toLocaleString()}`;
-                cartList.appendChild(itemElement);
-            });
-            document.getElementById('total-price').textContent = `Total: $${cart.reduce((sum, item) => sum + item.price, 0).toLocaleString()}`;
-            cartModal.style.display = 'block';
-        }
+        const modal = document.getElementById("myModal");
+        const closeModal = document.querySelector(".modal .close");
 
-        function checkout() {
-            alert('Thank you for your purchase!');
-            cart = []; // Clear the cart after checkout
-            document.getElementById("cart-count").textContent = cart.length; // Update cart count
-            document.getElementById('cartModal').style.display = 'none'; // Close the cart modal
-        }
-
-        // Modal close event handlers
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
+        closeModal.onclick = function() {
             modal.style.display = "none";
         }
 
-        const modals = {
-            myModal: document.getElementById("myModal"),
-            loginModal: document.getElementById("loginModal"),
-            productModal: document.getElementById("productModal"),
-            cartModal: document.getElementById("cartModal"),
-        };
-
-        for (const key in modals) {
-            const modal = modals[key];
-            modal.querySelector('.close').onclick = () => closeModal(key);
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    closeModal(key);
-                }
-            };
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         }
 
-        document.getElementById("cart-button").onclick = showCart;
+        const loginModal = document.getElementById("loginModal");
+        const closeLoginModal = document.querySelector(".login-modal .close");
+
+        document.getElementById("login-icon").onclick = function() {
+            loginModal.style.display = "block";
+        }
+
+        closeLoginModal.onclick = function() {
+            loginModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == loginModal) {
+                loginModal.style.display = "none";
+            }
+        }
+
+        const productModal = document.getElementById("productModal");
+        const closeProductModal = document.getElementById("product-modal-close");
+
+        closeProductModal.onclick = function() {
+            productModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == productModal) {
+                productModal.style.display = "none";
+            }
+        }
+
         displayItems(items);
     </script>
 </body>
