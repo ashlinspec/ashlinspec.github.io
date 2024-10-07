@@ -15,20 +15,20 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #faf9f8;
+            background-color: #f9f6f1;
             color: #333;
             line-height: 1.6;
         }
 
         header {
-            background-color: #f4f4f2;
-            color: #333;
-            padding: 2rem 0;
-            border-bottom: 1px solid #eaeaea;
+            background-color: #2c2a29;
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .container {
-            width: 85%;
+            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -40,120 +40,113 @@
         }
 
         .logo {
-            font-size: 2.7rem;
+            font-size: 2.5rem;
             font-family: 'Playfair Display', serif;
             font-weight: 700;
-            color: #000;
+            color: #d4af37;
             text-decoration: none;
-            text-transform: uppercase;
         }
 
         .search-container {
+            background-color: #fff1e5;
             padding: 2rem 0;
-            border-bottom: 1px solid #eaeaea;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .search-bar {
             display: flex;
-            justify-content: center;
             max-width: 600px;
             margin: 0 auto;
-            position: relative;
         }
 
         #search-input {
-            width: 100%;
-            padding: 1rem;
+            flex-grow: 1;
+            padding: 0.8rem;
             font-size: 1.1rem;
-            border: none;
-            border-bottom: 2px solid #333;
-            background-color: transparent;
-            outline: none;
-            font-family: 'Roboto', sans-serif;
+            border: 2px solid #e6cbb8;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            background-color: #faf3e6;
         }
 
         #search-button {
-            position: absolute;
-            right: 0;
-            background: none;
+            padding: 0.8rem 1.5rem;
+            background-color: #d4af37;
+            color: white;
             border: none;
-            font-size: 1.1rem;
-            color: #333;
             cursor: pointer;
+            font-size: 1rem;
+            border-radius: 0 4px 4px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        #search-button:hover {
+            background-color: #c5972d;
         }
 
         .item-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 3rem;
-            padding: 3rem 0;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
         }
 
         .item {
-            background-color: transparent;
-            border-radius: 0;
+            background-color: white;
+            border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s ease;
-            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 1px solid #e6cbb8;
         }
 
         .item:hover {
-            transform: scale(1.03);
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
         }
 
         .item img {
             width: 100%;
-            height: 350px;
+            height: 200px;
             object-fit: cover;
-            transition: all 0.3s ease;
-        }
-
-        .item img:hover {
-            transform: scale(1.1);
         }
 
         .item-content {
-            padding: 1.5rem 0;
+            padding: 1.5rem;
             text-align: center;
         }
 
         .item h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
+            margin-bottom: 0.7rem;
+            color: #5b4033;
             font-family: 'Playfair Display', serif;
-            font-weight: 400;
-            color: #000;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
         }
 
         .item p {
-            color: #777;
-            font-weight: 400;
-            font-size: 1rem;
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
 
         .btn {
             display: inline-block;
-            padding: 0.8rem 2rem;
-            background-color: transparent;
-            color: #333;
-            border: 2px solid #333;
+            padding: 0.6rem 1.5rem;
+            background-color: #d4af37;
+            color: white;
             text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            margin-top: 0.7rem;
         }
 
         .btn:hover {
-            background-color: #333;
-            color: white;
+            background-color: #c5972d;
         }
 
         #cart-count {
-            background-color: #000;
-            color: white;
+            background-color: white;
+            color: #d4af37;
             border-radius: 50%;
             padding: 0.3rem 0.6rem;
             margin-left: 0.5rem;
@@ -230,7 +223,7 @@
         }
 
         .login-content button {
-            background-color: #333;
+            background-color: #d4af37;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -240,34 +233,14 @@
         }
 
         .login-content button:hover {
-            background-color: #111;
+            background-color: #c5972d;
         }
 
         .user-icon {
             cursor: pointer;
-            font-size: 1.7rem;
-            color: #000;
+            font-size: 1.5rem;
+            color: #d4af37;
         }
-
-        footer {
-            background-color: #f4f4f2;
-            padding: 2rem 0;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #777;
-            border-top: 1px solid #eaeaea;
-        }
-
-        footer a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 1rem;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
     </style>
 </head>
 <body>
@@ -287,7 +260,7 @@
         <div class="container">
             <div class="search-bar">
                 <input type="text" id="search-input" placeholder="Search for luxury items...">
-                <button id="search-button">🔍</button>
+                <button id="search-button">Search</button>
             </div>
         </div>
     </div>
@@ -298,10 +271,23 @@
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2024 harisco. All rights reserved.</p>
-        <p><a href="#">Terms</a> | <a href="#">Privacy</a></p>
-    </footer>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Congratulations!</h2>
+            <p>Your item is on the way!</p>
+        </div>
+    </div>
+
+    <div id="loginModal" class="login-modal">
+        <div class="login-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button id="login-btn">Login</button>
+        </div>
+    </div>
 
     <div id="productModal" class="modal">
         <div class="modal-content">
@@ -315,120 +301,161 @@
     <script>
         const items = [
             {
-                name: "Buggati Veyron",
-                price: 6500,
-                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/spencer-davis-GCm0tha8IGY-unsplash.jpg?raw=true",
-                description: "The Bugatti Veyron is a legendary luxury supercar known for its breathtaking speed, featuring an 8.0-liter W16 engine that produces 1,001 horsepower and can reach over 250 mph.",
-                specialties: "Another specialty of the Bugatti Veyron is its advanced braking system, featuring carbon-ceramic brakes that provide exceptional stopping power and fade resistance, ensuring safety and performance even at extreme speeds."
+                id: 1,
+                name: "Luxury Fighter Jet",
+                price: 999999,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/fighter.jpg",
+                description: "A state-of-the-art luxury fighter jet equipped with advanced technology.",
+                specialties: "Speed: Mach 2.0, Range: 2000 miles, Seats: 2"
             },
             {
-                name: "activa 3g",
-                price: 12500,
-                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/activa3ghondaactivagside.jpeg?raw=true",
-                description: "The Honda Activa 3G is a highly regarded scooter in India, featuring a 109.2 cc engine that offers smooth performance, impressive fuel efficiency, and a comfortable design, making it ideal for daily commuting.",
-                specialties: "A unique specialty of the Honda Activa 3G is its innovative Eco Technology, which optimizes fuel efficiency while maintaining performance, making it one of the most economical scooters in its class."
+                id: 2,
+                name: "Noyal Ruben combo",
+                price: 50000,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.50.45.jpeg",
+                description: "The ultimate combo for luxury living.",
+                specialties: "Includes: Watch, Wallet, and Belt"
             },
             {
-                name: "ducati penigale",
-                price: 850,
-                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/stephan-louis-GOUAE3rPOa0-unsplash.jpg?raw=true",
-                description: "The Ducati Panigale is a high-performance sportbike celebrated for its aggressive design and powerful Superquadro L-twin engine, offering exceptional speed, agility, and advanced electronic features for optimal handling and safety.",
-                specialties: "A unique specialty of the Ducati Panigale is its Monocoque chassis, which integrates the frame and bodywork into a single unit, providing exceptional rigidity and lightweight handling for enhanced performance on the track."
+                id: 3,
+                name: "Harikuttan",
+                price: 5000000,
+                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/WhatsApp%20Image%202024-10-06%20at%2022.42.47.jpeg?raw=true",
+                description: "An exquisite piece of art representing heritage and luxury.",
+                specialties: "Handcrafted, Limited Edition"
             },
             {
-                name: "porsche 911 Gt3",
-                price: 570,
-                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/pawel-puszkarski-axs76t7S-zg-unsplash.jpg?raw=true",
-                description: "The Porsche 911 GT3 is a high-performance sports car known for its 4.0-liter flat-six engine and track-focused handling.",
-                specialties: "A unique specialty of the Porsche 911 GT3 is its active rear-wheel steering, which enhances stability and agility, allowing for superior cornering performance at high speeds."
+                id: 4,
+                name: "Porsche 911gt3rs",
+                price: 250000,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/pawel-puszkarski-axs76t7S-zg-unsplash.jpg",
+                description: "The iconic sports car that combines performance and luxury.",
+                specialties: "Engine: 4.0L Flat-6, Horsepower: 520 HP"
             },
             {
-                name: "F-22 Raptor",
-                price: 24000,
-                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/pexels-brad-kiracofe-3678540-5511769.jpg?raw=true",
-                description: "The F-22 Raptor is a fifth-generation stealth fighter known for its advanced technology, supercruise capability, and unmatched agility.",
-                specialties: "A unique specialty of the F-22 Raptor is its supercruise capability, enabling sustained supersonic flight without afterburners."
+                id: 5,
+                name: "Earth",
+                price: 69.69,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/earth-4k-best-desktop-download-wallpaper-preview.jpg",
+                description: "The only planet with life and breathtaking beauty.",
+                specialties: "Atmosphere: Nitrogen & Oxygen, Diameter: 12,742 km"
+            },
+            {
+                id: 6,
+                name: "Pair of Macs",
+                price: 100.01,
+                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/WhatsApp%20Image%202024-10-06%20at%2022.11.01.jpeg?raw=true",
+                description: "High-end computing experience with a pair of Macs.",
+                specialties: "M1 Chip, Retina Display, 16GB RAM"
             }
         ];
 
-        const itemList = document.getElementById('item-list');
+        let cartCount = 0;
 
-        function createItemCard(item) {
-            const itemCard = document.createElement('div');
-            itemCard.classList.add('item');
+        function displayItems(itemsToDisplay) {
+            const itemList = document.getElementById('item-list');
+            itemList.innerHTML = '';
+            itemsToDisplay.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" data-id="${item.id}">
+                    <div class="item-content">
+                        <h3>${item.name}</h3>
+                        <p>$${item.price.toLocaleString()}</p>
+                        <button class="btn add-to-cart" data-id="${item.id}">Add to Cart</button>
+                        <button class="btn buy-now" data-id="${item.id}">Buy Now</button>
+                    </div>
+                `;
+                itemList.appendChild(itemElement);
 
-            const itemImage = document.createElement('img');
-            itemImage.src = item.image;
-            itemCard.appendChild(itemImage);
-
-            const itemContent = document.createElement('div');
-            itemContent.classList.add('item-content');
-
-            const itemTitle = document.createElement('h3');
-            itemTitle.textContent = item.name;
-            itemContent.appendChild(itemTitle);
-
-            const itemPrice = document.createElement('p');
-            itemPrice.textContent = `$${item.price.toLocaleString()}`;
-            itemContent.appendChild(itemPrice);
-
-            const buyButton = document.createElement('a');
-            buyButton.href = "#";
-            buyButton.classList.add('btn');
-            buyButton.textContent = "Buy Now";
-            buyButton.addEventListener('click', function() {
-                showProductModal(item);
+                // Add click event for the image to show product details
+                const image = itemElement.querySelector('img');
+                image.addEventListener('click', showProductDetails);
             });
-            itemContent.appendChild(buyButton);
 
-            itemCard.appendChild(itemContent);
-            return itemCard;
-        }
+            // Add event listeners to buttons
+            document.querySelectorAll('.buy-now').forEach(button => {
+                button.addEventListener('click', showModal);
+            });
 
-        function loadItems() {
-            items.forEach(item => {
-                const itemCard = createItemCard(item);
-                itemList.appendChild(itemCard);
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', addToCart);
             });
         }
 
-        function showProductModal(item) {
-            document.getElementById("product-name").textContent = item.name;
-            document.getElementById("product-description").textContent = item.description;
-            document.getElementById("product-specialties").textContent = `Specialties: ${item.specialties}`;
-            document.getElementById("productModal").style.display = "block";
-        }
+        function showProductDetails(event) {
+            const itemId = event.target.dataset.id;
+            const item = items.find(item => item.id == itemId);
 
-        document.getElementById("product-modal-close").addEventListener('click', function() {
-            document.getElementById("productModal").style.display = "none";
-        });
-
-        // Search bar functionality
-        document.getElementById("search-button").addEventListener("click", function() {
-            const searchTerm = document.getElementById("search-input").value.toLowerCase();
-            itemList.innerHTML = ""; // Clear current items
-
-            const filteredItems = items.filter(item => 
-                item.name.toLowerCase().includes(searchTerm) ||
-                item.description.toLowerCase().includes(searchTerm)
-            );
-
-            if (filteredItems.length === 0) {
-                itemList.innerHTML = "<p>No items found</p>";
-            } else {
-                filteredItems.forEach(item => {
-                    const itemCard = createItemCard(item);
-                    itemList.appendChild(itemCard);
-                });
+            if (item) {
+                document.getElementById('product-name').textContent = item.name;
+                document.getElementById('product-description').textContent = item.description;
+                document.getElementById('product-specialties').textContent = `Specialties: ${item.specialties}`;
+                document.getElementById("productModal").style.display = "block";
             }
-        });
+        }
 
-        loadItems();
+        function showModal() {
+            const modal = document.getElementById("myModal");
+            modal.style.display = "block";
+            cartCount++;
+            document.getElementById("cart-count").textContent = cartCount;
+        }
+
+        function addToCart(event) {
+            const itemId = event.target.dataset.id;
+            // Handle adding to cart logic here (like saving to localStorage or a cart array)
+            alert(`Item with ID: ${itemId} added to cart!`);
+        }
+
+        const modal = document.getElementById("myModal");
+        const closeModal = document.querySelector(".modal .close");
+
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        const loginModal = document.getElementById("loginModal");
+        const closeLoginModal = document.querySelector(".login-modal .close");
+
+        document.getElementById("login-icon").onclick = function() {
+            loginModal.style.display = "block";
+        }
+
+        closeLoginModal.onclick = function() {
+            loginModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == loginModal) {
+                loginModal.style.display = "none";
+            }
+        }
+
+        const productModal = document.getElementById("productModal");
+        const closeProductModal = document.getElementById("product-modal-close");
+
+        closeProductModal.onclick = function() {
+            productModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == productModal) {
+                productModal.style.display = "none";
+            }
+        }
+
+        displayItems(items);
     </script>
 </body>
 </html>
-
-
 
 
 
