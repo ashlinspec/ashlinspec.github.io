@@ -241,56 +241,20 @@
             font-size: 1.5rem;
             color: #d4af37;
         }
-
-        #logo-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #2c2a29;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        #animated-logo {
-            font-size: 4rem;
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            color: #d4af37;
-            opacity: 0;
-            animation: fadeIn 6s ease-in-out forwards;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        #main-content {
-            display: none;
-        }
     </style>
 </head>
 <body>
-    <div id="logo-animation">
-        <div id="animated-logo">harisco</div>
-    </div>
-
-    <div id="main-content">
-     <header>
-         <div class="container">
-             <div class="header-content">
-                 <a href="#" class="logo">harisco</a>
-                 <nav>
-                     <span class="user-icon" id="login-icon">👤</span>
-                     <a href="#" class="btn" id="cart-button">Cart <span id="cart-count">0</span></a>
-                 </nav>
-             </div>
-         </div>
-     </header>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">harisco</a>
+                <nav>
+                    <span class="user-icon" id="login-icon">👤</span>
+                    <a href="#" class="btn" id="cart-button">Cart <span id="cart-count">0</span></a>
+                </nav>
+            </div>
+        </div>
+    </header>
 
     <div class="search-container">
         <div class="container">
@@ -301,94 +265,197 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="item-list">
-            <div class="item">
-                <img src="product1.jpg" alt="Luxury Item 1">
-                <div class="item-content">
-                    <h3>Luxury Item 1</h3>
-                    <p>$199</p>
-                    <a href="#" class="btn" id="product1-btn">View Item</a>
-                </div>
-            </div>
+    <main class="container">
+        <div class="item-list" id="item-list">
+            <!-- Items will be dynamically added here -->
+        </div>
+    </main>
 
-            <!-- More products... -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Congratulations!</h2>
+            <p>Your item is on the way!</p>
         </div>
     </div>
-    
-    <div id="login-modal" class="login-modal">
+
+    <div id="loginModal" class="login-modal">
         <div class="login-content">
             <span class="close">&times;</span>
             <h2>Login</h2>
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
-            <button>Login</button>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button id="login-btn">Login</button>
         </div>
     </div>
 
-    <div id="product-modal" class="modal">
+    <div id="productModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Product Details</h2>
-            <p>Details about the selected product...</p>
+            <span class="close" id="product-modal-close">&times;</span>
+            <h2 id="product-name"></h2>
+            <p id="product-description"></p>
+            <p id="product-specialties"></p>
         </div>
-    </div>
-
-    <div id="purchase-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Purchase Confirmation</h2>
-            <p>Do you want to purchase this item?</p>
-            <button class="btn">Yes</button>
-        </div>
-    </div>
     </div>
 
     <script>
-        window.onload = function() {
-            setTimeout(function() {
-                document.getElementById('logo-animation').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-            }, 6000);
-        };
+        const items = [
+            {
+                id: 1,
+                name: "Luxury Fighter Jet",
+                price: 999999,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/fighter.jpg",
+                description: "A state-of-the-art luxury fighter jet equipped with advanced technology.",
+                specialties: "Speed: Mach 2.0, Range: 2000 miles, Seats: 2"
+            },
+            {
+                id: 2,
+                name: "Noyal Ruben combo",
+                price: 50000,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/WhatsApp%20Image%202024-10-06%20at%2004.50.45.jpeg",
+                description: "The ultimate combo for luxury living.",
+                specialties: "Includes: Watch, Wallet, and Belt"
+            },
+            {
+                id: 3,
+                name: "Harikuttan",
+                price: 5000000,
+                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/WhatsApp%20Image%202024-10-06%20at%2022.42.47.jpeg?raw=true",
+                description: "An exquisite piece of art representing heritage and luxury.",
+                specialties: "Handcrafted, Limited Edition"
+            },
+            {
+                id: 4,
+                name: "Porsche 911gt3rs",
+                price: 250000,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/pawel-puszkarski-axs76t7S-zg-unsplash.jpg",
+                description: "The iconic sports car that combines performance and luxury.",
+                specialties: "Engine: 4.0L Flat-6, Horsepower: 520 HP"
+            },
+            {
+                id: 5,
+                name: "Earth",
+                price: 69.69,
+                image: "https://raw.githubusercontent.com/ashlinspec/ashlinspec.github.io/main/earth-4k-best-desktop-download-wallpaper-preview.jpg",
+                description: "The only planet with life and breathtaking beauty.",
+                specialties: "Atmosphere: Nitrogen & Oxygen, Diameter: 12,742 km"
+            },
+            {
+                id: 6,
+                name: "Pair of Macs",
+                price: 100.01,
+                image: "https://github.com/ashlinspec/ashlinspec.github.io/blob/main/WhatsApp%20Image%202024-10-06%20at%2022.11.01.jpeg?raw=true",
+                description: "High-end computing experience with a pair of Macs.",
+                specialties: "M1 Chip, Retina Display, 16GB RAM"
+            }
+        ];
 
-        // Open and close modals
-        const loginModal = document.getElementById('login-modal');
-        const productModal = document.getElementById('product-modal');
-        const purchaseModal = document.getElementById('purchase-modal');
-        const loginIcon = document.getElementById('login-icon');
-        const productBtn = document.getElementById('product1-btn');
-        const closeButtons = document.querySelectorAll('.close');
+        let cartCount = 0;
 
-        loginIcon.onclick = function() {
-            loginModal.style.display = 'block';
-        };
+        function displayItems(itemsToDisplay) {
+            const itemList = document.getElementById('item-list');
+            itemList.innerHTML = '';
+            itemsToDisplay.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" data-id="${item.id}">
+                    <div class="item-content">
+                        <h3>${item.name}</h3>
+                        <p>$${item.price.toLocaleString()}</p>
+                        <button class="btn add-to-cart" data-id="${item.id}">Add to Cart</button>
+                        <button class="btn buy-now" data-id="${item.id}">Buy Now</button>
+                    </div>
+                `;
+                itemList.appendChild(itemElement);
 
-        productBtn.onclick = function() {
-            productModal.style.display = 'block';
-        };
+                // Add click event for the image to show product details
+                const image = itemElement.querySelector('img');
+                image.addEventListener('click', showProductDetails);
+            });
 
-        closeButtons.forEach(button => {
-            button.onclick = function() {
-                loginModal.style.display = 'none';
-                productModal.style.display = 'none';
-                purchaseModal.style.display = 'none';
-            };
-        });
+            // Add event listeners to buttons
+            document.querySelectorAll('.buy-now').forEach(button => {
+                button.addEventListener('click', showModal);
+            });
+
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
+        }
+
+        function showProductDetails(event) {
+            const itemId = event.target.dataset.id;
+            const item = items.find(item => item.id == itemId);
+
+            if (item) {
+                document.getElementById('product-name').textContent = item.name;
+                document.getElementById('product-description').textContent = item.description;
+                document.getElementById('product-specialties').textContent = `Specialties: ${item.specialties}`;
+                document.getElementById("productModal").style.display = "block";
+            }
+        }
+
+        function showModal() {
+            const modal = document.getElementById("myModal");
+            modal.style.display = "block";
+            cartCount++;
+            document.getElementById("cart-count").textContent = cartCount;
+        }
+
+        function addToCart(event) {
+            const itemId = event.target.dataset.id;
+            // Handle adding to cart logic here (like saving to localStorage or a cart array)
+            alert(`Item with ID: ${itemId} added to cart!`);
+        }
+
+        const modal = document.getElementById("myModal");
+        const closeModal = document.querySelector(".modal .close");
+
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        const loginModal = document.getElementById("loginModal");
+        const closeLoginModal = document.querySelector(".login-modal .close");
+
+        document.getElementById("login-icon").onclick = function() {
+            loginModal.style.display = "block";
+        }
+
+        closeLoginModal.onclick = function() {
+            loginModal.style.display = "none";
+        }
 
         window.onclick = function(event) {
             if (event.target == loginModal) {
-                loginModal.style.display = 'none';
-            } else if (event.target == productModal) {
-                productModal.style.display = 'none';
-            } else if (event.target == purchaseModal) {
-                purchaseModal.style.display = 'none';
+                loginModal.style.display = "none";
             }
-        };
+        }
+
+        const productModal = document.getElementById("productModal");
+        const closeProductModal = document.getElementById("product-modal-close");
+
+        closeProductModal.onclick = function() {
+            productModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == productModal) {
+                productModal.style.display = "none";
+            }
+        }
+
+        displayItems(items);
     </script>
 </body>
 </html>
-
 
 
 
